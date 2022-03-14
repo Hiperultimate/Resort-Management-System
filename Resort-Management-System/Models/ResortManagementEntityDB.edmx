@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Resort_Management_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AmenitiesMaster">
+          <Key>
+            <PropertyRef Name="AmenityID" />
+          </Key>
+          <Property Name="AmenityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AmenityName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerTrans">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="AdhaarNumber" Type="text" Nullable="false" />
+          <Property Name="PassportNumber" Type="varchar" MaxLength="20" />
+          <Property Name="DrivingLicenseNumber" Type="varchar" MaxLength="40" />
+          <Property Name="PAN" Type="varchar" MaxLength="20" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="50" />
+          <Property Name="UpilID" Type="varchar" MaxLength="80" />
+          <Property Name="CardNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Contact" Type="bigint" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="HostEmployee" Type="int" />
+          <Property Name="RoomNumber" Type="int" />
+          <Property Name="LuxuryProvided" Type="int" />
+          <Property Name="CheckInDate" Type="datetime" Nullable="false" />
+          <Property Name="CheckOutDate" Type="datetime" Nullable="false" />
+          <Property Name="PaymentStatus" Type="int" Nullable="false" />
+          <Property Name="TotalPayment" Type="bigint" />
+        </EntityType>
+        <EntityType Name="EmployeeMaster">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="40" />
+          <Property Name="Contact" Type="bigint" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Salary" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacilityAmenityTrans">
+          <Key>
+            <PropertyRef Name="LuxuryID" />
+          </Key>
+          <Property Name="LuxuryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LuxuryName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="AmenityID" Type="int" Nullable="false" />
+          <Property Name="LuxuryCost" Type="bigint" />
+        </EntityType>
+        <EntityType Name="RolesMaster">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoomMaster">
+          <Key>
+            <PropertyRef Name="RoomNumber" />
+          </Key>
+          <Property Name="RoomNumber" Type="int" Nullable="false" />
+          <Property Name="RoomType" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="IsOccupied" Type="int" Nullable="false" />
+          <Property Name="RoomCost" Type="bigint" />
+        </EntityType>
+        <Association Name="FK__CustomerT__HostE__6FE99F9F">
+          <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="0..1" />
+          <End Role="CustomerTrans" Type="Self.CustomerTrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeMaster">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="CustomerTrans">
+              <PropertyRef Name="HostEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerT__Luxur__71D1E811">
+          <End Role="FacilityAmenityTrans" Type="Self.FacilityAmenityTrans" Multiplicity="0..1" />
+          <End Role="CustomerTrans" Type="Self.CustomerTrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacilityAmenityTrans">
+              <PropertyRef Name="LuxuryID" />
+            </Principal>
+            <Dependent Role="CustomerTrans">
+              <PropertyRef Name="LuxuryProvided" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerT__RoomN__70DDC3D8">
+          <End Role="RoomMaster" Type="Self.RoomMaster" Multiplicity="0..1" />
+          <End Role="CustomerTrans" Type="Self.CustomerTrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomMaster">
+              <PropertyRef Name="RoomNumber" />
+            </Principal>
+            <Dependent Role="CustomerTrans">
+              <PropertyRef Name="RoomNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeM__RoleI__4BAC3F29">
+          <End Role="RolesMaster" Type="Self.RolesMaster" Multiplicity="1" />
+          <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolesMaster">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="EmployeeMaster">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FacilityA__Ameni__6D0D32F4">
+          <End Role="AmenitiesMaster" Type="Self.AmenitiesMaster" Multiplicity="1" />
+          <End Role="FacilityAmenityTrans" Type="Self.FacilityAmenityTrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AmenitiesMaster">
+              <PropertyRef Name="AmenityID" />
+            </Principal>
+            <Dependent Role="FacilityAmenityTrans">
+              <PropertyRef Name="AmenityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Resort_Management_DBModelStoreContainer">
+          <EntitySet Name="AmenitiesMaster" EntityType="Self.AmenitiesMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerTrans" EntityType="Self.CustomerTrans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacilityAmenityTrans" EntityType="Self.FacilityAmenityTrans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolesMaster" EntityType="Self.RolesMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomMaster" EntityType="Self.RoomMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CustomerT__HostE__6FE99F9F" Association="Self.FK__CustomerT__HostE__6FE99F9F">
+            <End Role="EmployeeMaster" EntitySet="EmployeeMaster" />
+            <End Role="CustomerTrans" EntitySet="CustomerTrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerT__Luxur__71D1E811" Association="Self.FK__CustomerT__Luxur__71D1E811">
+            <End Role="FacilityAmenityTrans" EntitySet="FacilityAmenityTrans" />
+            <End Role="CustomerTrans" EntitySet="CustomerTrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerT__RoomN__70DDC3D8" Association="Self.FK__CustomerT__RoomN__70DDC3D8">
+            <End Role="RoomMaster" EntitySet="RoomMaster" />
+            <End Role="CustomerTrans" EntitySet="CustomerTrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeM__RoleI__4BAC3F29" Association="Self.FK__EmployeeM__RoleI__4BAC3F29">
+            <End Role="RolesMaster" EntitySet="RolesMaster" />
+            <End Role="EmployeeMaster" EntitySet="EmployeeMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FacilityA__Ameni__6D0D32F4" Association="Self.FK__FacilityA__Ameni__6D0D32F4">
+            <End Role="AmenitiesMaster" EntitySet="AmenitiesMaster" />
+            <End Role="FacilityAmenityTrans" EntitySet="FacilityAmenityTrans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Resort_Management_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AmenitiesMaster">
+          <Key>
+            <PropertyRef Name="AmenityID" />
+          </Key>
+          <Property Name="AmenityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AmenityName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FacilityAmenityTrans" Relationship="Self.FK__FacilityA__Ameni__6D0D32F4" FromRole="AmenitiesMaster" ToRole="FacilityAmenityTrans" />
+        </EntityType>
+        <EntityType Name="CustomerTran">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdhaarNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DrivingLicenseNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PAN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpilID" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="Int64" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HostEmployee" Type="Int32" />
+          <Property Name="RoomNumber" Type="Int32" />
+          <Property Name="LuxuryProvided" Type="Int32" />
+          <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentStatus" Type="Int32" Nullable="false" />
+          <Property Name="TotalPayment" Type="Int64" />
+          <NavigationProperty Name="EmployeeMaster" Relationship="Self.FK__CustomerT__HostE__6FE99F9F" FromRole="CustomerTrans" ToRole="EmployeeMaster" />
+          <NavigationProperty Name="FacilityAmenityTran" Relationship="Self.FK__CustomerT__Luxur__71D1E811" FromRole="CustomerTrans" ToRole="FacilityAmenityTrans" />
+          <NavigationProperty Name="RoomMaster" Relationship="Self.FK__CustomerT__RoomN__70DDC3D8" FromRole="CustomerTrans" ToRole="RoomMaster" />
+        </EntityType>
+        <EntityType Name="EmployeeMaster">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="Int64" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Salary" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="CustomerTrans" Relationship="Self.FK__CustomerT__HostE__6FE99F9F" FromRole="EmployeeMaster" ToRole="CustomerTrans" />
+          <NavigationProperty Name="RolesMaster" Relationship="Self.FK__EmployeeM__RoleI__4BAC3F29" FromRole="EmployeeMaster" ToRole="RolesMaster" />
+        </EntityType>
+        <EntityType Name="FacilityAmenityTran">
+          <Key>
+            <PropertyRef Name="LuxuryID" />
+          </Key>
+          <Property Name="LuxuryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LuxuryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AmenityID" Type="Int32" Nullable="false" />
+          <Property Name="LuxuryCost" Type="Int64" />
+          <NavigationProperty Name="AmenitiesMaster" Relationship="Self.FK__FacilityA__Ameni__6D0D32F4" FromRole="FacilityAmenityTrans" ToRole="AmenitiesMaster" />
+          <NavigationProperty Name="CustomerTrans" Relationship="Self.FK__CustomerT__Luxur__71D1E811" FromRole="FacilityAmenityTrans" ToRole="CustomerTrans" />
+        </EntityType>
+        <EntityType Name="RolesMaster">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EmployeeMasters" Relationship="Self.FK__EmployeeM__RoleI__4BAC3F29" FromRole="RolesMaster" ToRole="EmployeeMaster" />
+        </EntityType>
+        <EntityType Name="RoomMaster">
+          <Key>
+            <PropertyRef Name="RoomNumber" />
+          </Key>
+          <Property Name="RoomNumber" Type="Int32" Nullable="false" />
+          <Property Name="RoomType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsOccupied" Type="Int32" Nullable="false" />
+          <Property Name="RoomCost" Type="Int64" />
+          <NavigationProperty Name="CustomerTrans" Relationship="Self.FK__CustomerT__RoomN__70DDC3D8" FromRole="RoomMaster" ToRole="CustomerTrans" />
+        </EntityType>
+        <Association Name="FK__FacilityA__Ameni__6D0D32F4">
+          <End Role="AmenitiesMaster" Type="Self.AmenitiesMaster" Multiplicity="1" />
+          <End Role="FacilityAmenityTrans" Type="Self.FacilityAmenityTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AmenitiesMaster">
+              <PropertyRef Name="AmenityID" />
+            </Principal>
+            <Dependent Role="FacilityAmenityTrans">
+              <PropertyRef Name="AmenityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerT__HostE__6FE99F9F">
+          <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="0..1" />
+          <End Role="CustomerTrans" Type="Self.CustomerTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeMaster">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="CustomerTrans">
+              <PropertyRef Name="HostEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerT__Luxur__71D1E811">
+          <End Role="FacilityAmenityTrans" Type="Self.FacilityAmenityTran" Multiplicity="0..1" />
+          <End Role="CustomerTrans" Type="Self.CustomerTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacilityAmenityTrans">
+              <PropertyRef Name="LuxuryID" />
+            </Principal>
+            <Dependent Role="CustomerTrans">
+              <PropertyRef Name="LuxuryProvided" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerT__RoomN__70DDC3D8">
+          <End Role="RoomMaster" Type="Self.RoomMaster" Multiplicity="0..1" />
+          <End Role="CustomerTrans" Type="Self.CustomerTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomMaster">
+              <PropertyRef Name="RoomNumber" />
+            </Principal>
+            <Dependent Role="CustomerTrans">
+              <PropertyRef Name="RoomNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeM__RoleI__4BAC3F29">
+          <End Role="RolesMaster" Type="Self.RolesMaster" Multiplicity="1" />
+          <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolesMaster">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="EmployeeMaster">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Resort_Management_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AmenitiesMasters" EntityType="Self.AmenitiesMaster" />
+          <EntitySet Name="CustomerTrans" EntityType="Self.CustomerTran" />
+          <EntitySet Name="EmployeeMasters" EntityType="Self.EmployeeMaster" />
+          <EntitySet Name="FacilityAmenityTrans" EntityType="Self.FacilityAmenityTran" />
+          <EntitySet Name="RolesMasters" EntityType="Self.RolesMaster" />
+          <EntitySet Name="RoomMasters" EntityType="Self.RoomMaster" />
+          <AssociationSet Name="FK__FacilityA__Ameni__6D0D32F4" Association="Self.FK__FacilityA__Ameni__6D0D32F4">
+            <End Role="AmenitiesMaster" EntitySet="AmenitiesMasters" />
+            <End Role="FacilityAmenityTrans" EntitySet="FacilityAmenityTrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerT__HostE__6FE99F9F" Association="Self.FK__CustomerT__HostE__6FE99F9F">
+            <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+            <End Role="CustomerTrans" EntitySet="CustomerTrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerT__Luxur__71D1E811" Association="Self.FK__CustomerT__Luxur__71D1E811">
+            <End Role="FacilityAmenityTrans" EntitySet="FacilityAmenityTrans" />
+            <End Role="CustomerTrans" EntitySet="CustomerTrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerT__RoomN__70DDC3D8" Association="Self.FK__CustomerT__RoomN__70DDC3D8">
+            <End Role="RoomMaster" EntitySet="RoomMasters" />
+            <End Role="CustomerTrans" EntitySet="CustomerTrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeM__RoleI__4BAC3F29" Association="Self.FK__EmployeeM__RoleI__4BAC3F29">
+            <End Role="RolesMaster" EntitySet="RolesMasters" />
+            <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Resort_Management_DBModelStoreContainer" CdmEntityContainer="Resort_Management_DBEntities">
+          <EntitySetMapping Name="AmenitiesMasters">
+            <EntityTypeMapping TypeName="Resort_Management_DBModel.AmenitiesMaster">
+              <MappingFragment StoreEntitySet="AmenitiesMaster">
+                <ScalarProperty Name="AmenityID" ColumnName="AmenityID" />
+                <ScalarProperty Name="AmenityName" ColumnName="AmenityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerTrans">
+            <EntityTypeMapping TypeName="Resort_Management_DBModel.CustomerTran">
+              <MappingFragment StoreEntitySet="CustomerTrans">
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdhaarNumber" ColumnName="AdhaarNumber" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="DrivingLicenseNumber" ColumnName="DrivingLicenseNumber" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="UpilID" ColumnName="UpilID" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="HostEmployee" ColumnName="HostEmployee" />
+                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+                <ScalarProperty Name="LuxuryProvided" ColumnName="LuxuryProvided" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="TotalPayment" ColumnName="TotalPayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeMasters">
+            <EntityTypeMapping TypeName="Resort_Management_DBModel.EmployeeMaster">
+              <MappingFragment StoreEntitySet="EmployeeMaster">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacilityAmenityTrans">
+            <EntityTypeMapping TypeName="Resort_Management_DBModel.FacilityAmenityTran">
+              <MappingFragment StoreEntitySet="FacilityAmenityTrans">
+                <ScalarProperty Name="LuxuryID" ColumnName="LuxuryID" />
+                <ScalarProperty Name="LuxuryName" ColumnName="LuxuryName" />
+                <ScalarProperty Name="AmenityID" ColumnName="AmenityID" />
+                <ScalarProperty Name="LuxuryCost" ColumnName="LuxuryCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolesMasters">
+            <EntityTypeMapping TypeName="Resort_Management_DBModel.RolesMaster">
+              <MappingFragment StoreEntitySet="RolesMaster">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomMasters">
+            <EntityTypeMapping TypeName="Resort_Management_DBModel.RoomMaster">
+              <MappingFragment StoreEntitySet="RoomMaster">
+                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="IsOccupied" ColumnName="IsOccupied" />
+                <ScalarProperty Name="RoomCost" ColumnName="RoomCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
