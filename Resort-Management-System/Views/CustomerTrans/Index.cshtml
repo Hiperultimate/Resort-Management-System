@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Resort_Management_System.Models.CustomerTran>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customer</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdentityProof)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckInDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckOutDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmenitiesMaster.AmenityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeMaster.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomMaster.RoomType)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityProof)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckInDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckOutDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmenitiesMaster.AmenityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeMaster.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomMaster.RoomType)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BookingID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookingID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h4>@Html.ActionLink("Add A New Customer", "Create")</h4>

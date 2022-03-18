@@ -1,0 +1,42 @@
+﻿@model Resort_Management_System.Models.FacilityAmenityTran
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FacilityAmenityTran</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LuxuryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LuxuryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LuxuryCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LuxuryCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmenitiesMaster.AmenityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmenitiesMaster.AmenityName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LuxuryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{449476DA-357F-4A30-98D6-1FB5513B3AF8}</ProjectGuid>
+    <ProjectGuid>{053901CF-ABEC-4C2B-83BD-60A832D603E5}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44399</IISExpressSSLPort>
+    <IISExpressSSLPort>44322</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -129,8 +129,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AmenitiesMastersController.cs" />
+    <Compile Include="Controllers\CustomerTransController.cs" />
     <Compile Include="Controllers\EmployeeMastersController.cs" />
+    <Compile Include="Controllers\FacilityAmenityTransController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RolesMastersController.cs" />
+    <Compile Include="Controllers\RoomMastersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -228,6 +233,31 @@
     <Content Include="Views\EmployeeMasters\Edit.cshtml" />
     <Content Include="Views\EmployeeMasters\Index.cshtml" />
     <Content Include="Views\EmployeeMasters\Login.cshtml" />
+    <Content Include="Views\CustomerTrans\Create.cshtml" />
+    <Content Include="Views\CustomerTrans\Delete.cshtml" />
+    <Content Include="Views\CustomerTrans\Details.cshtml" />
+    <Content Include="Views\CustomerTrans\Edit.cshtml" />
+    <Content Include="Views\CustomerTrans\Index.cshtml" />
+    <Content Include="Views\RolesMasters\Create.cshtml" />
+    <Content Include="Views\RolesMasters\Delete.cshtml" />
+    <Content Include="Views\RolesMasters\Details.cshtml" />
+    <Content Include="Views\RolesMasters\Edit.cshtml" />
+    <Content Include="Views\RolesMasters\Index.cshtml" />
+    <Content Include="Views\RoomMasters\Create.cshtml" />
+    <Content Include="Views\RoomMasters\Delete.cshtml" />
+    <Content Include="Views\RoomMasters\Details.cshtml" />
+    <Content Include="Views\RoomMasters\Edit.cshtml" />
+    <Content Include="Views\RoomMasters\Index.cshtml" />
+    <Content Include="Views\FacilityAmenityTrans\Create.cshtml" />
+    <Content Include="Views\FacilityAmenityTrans\Delete.cshtml" />
+    <Content Include="Views\FacilityAmenityTrans\Details.cshtml" />
+    <Content Include="Views\FacilityAmenityTrans\Edit.cshtml" />
+    <Content Include="Views\FacilityAmenityTrans\Index.cshtml" />
+    <Content Include="Views\AmenitiesMasters\Create.cshtml" />
+    <Content Include="Views\AmenitiesMasters\Delete.cshtml" />
+    <Content Include="Views\AmenitiesMasters\Details.cshtml" />
+    <Content Include="Views\AmenitiesMasters\Edit.cshtml" />
+    <Content Include="Views\AmenitiesMasters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -264,9 +294,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62873</DevelopmentServerPort>
+          <DevelopmentServerPort>54009</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44399/</IISUrl>
+          <IISUrl>https://localhost:44322/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

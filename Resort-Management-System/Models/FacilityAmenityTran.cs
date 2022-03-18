@@ -14,19 +14,11 @@ namespace Resort_Management_System.Models
     
     public partial class FacilityAmenityTran
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FacilityAmenityTran()
-        {
-            this.CustomerTrans = new HashSet<CustomerTran>();
-        }
-    
         public int LuxuryID { get; set; }
         public string LuxuryName { get; set; }
         public int AmenityID { get; set; }
         public Nullable<long> LuxuryCost { get; set; }
     
         public virtual AmenitiesMaster AmenitiesMaster { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CustomerTran> CustomerTrans { get; set; }
     }
 }

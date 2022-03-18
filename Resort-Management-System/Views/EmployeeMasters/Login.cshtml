@@ -1,11 +1,9 @@
 ﻿@model Resort_Management_System.Models.EmployeeMaster
-
 @{
     ViewBag.Title = "Login";
 }
 
 <h2>Login</h2>
-
 @using (Html.BeginForm("Login", "EmployeeMasters", FormMethod.Post))
 {
 
@@ -18,4 +16,3 @@
     <button type="submit">Submit</button>
 }
 
-<h3>@ViewBag.Message</h3>

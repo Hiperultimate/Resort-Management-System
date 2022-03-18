@@ -18,13 +18,7 @@ namespace Resort_Management_System.Models
         public string CustomerName { get; set; }
         public int Age { get; set; }
         public string Email { get; set; }
-        public string AdhaarNumber { get; set; }
-        public string PassportNumber { get; set; }
-        public string DrivingLicenseNumber { get; set; }
-        public string PAN { get; set; }
-        public string AccountNumber { get; set; }
-        public string UpilID { get; set; }
-        public string CardNumber { get; set; }
+        public string IdentityProof { get; set; }
         public long Contact { get; set; }
         public string Address { get; set; }
         public Nullable<int> HostEmployee { get; set; }
@@ -35,8 +29,8 @@ namespace Resort_Management_System.Models
         public int PaymentStatus { get; set; }
         public Nullable<long> TotalPayment { get; set; }
     
+        public virtual AmenitiesMaster AmenitiesMaster { get; set; }
         public virtual EmployeeMaster EmployeeMaster { get; set; }
-        public virtual FacilityAmenityTran FacilityAmenityTran { get; set; }
         public virtual RoomMaster RoomMaster { get; set; }
     }
 }
