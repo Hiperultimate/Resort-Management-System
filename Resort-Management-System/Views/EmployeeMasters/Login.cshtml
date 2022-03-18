@@ -1,0 +1,21 @@
+﻿@model Resort_Management_System.Models.EmployeeMaster
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "EmployeeMasters", FormMethod.Post))
+{
+
+    <label>Email : </label>
+    @Html.TextBoxFor(x => x.Email)
+
+    <label>Password : </label>
+    @Html.TextBoxFor(x => x.Password)
+
+    <button type="submit">Submit</button>
+}
+
+<h3>@ViewBag.Message</h3>
