@@ -81,6 +81,12 @@ namespace Resort_Management_System.Controllers
             return View();
         }
 
+        public ActionResult Logout() {
+            Session["roleName"] = null;
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "EmployeeMasters");
+        }
+
         // GET: EmployeeMasters/Details/5
         [Authorize]
         public ActionResult Details(int? id)
