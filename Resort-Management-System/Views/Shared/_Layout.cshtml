@@ -29,6 +29,9 @@
                     </ul>
                 }
             </div>
+            @if (Session["roleName"] != null) { 
+                <a href="/EmployeeMasters/Logout">Log out</a>
+            }
         </div>
     </div>
     <div class="container body-content">
