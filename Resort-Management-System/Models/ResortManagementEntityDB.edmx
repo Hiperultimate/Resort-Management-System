@@ -20,13 +20,7 @@
           <Property Name="CustomerName" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="AdhaarNumber" Type="text" Nullable="false" />
-          <Property Name="PassportNumber" Type="varchar" MaxLength="20" />
-          <Property Name="DrivingLicenseNumber" Type="varchar" MaxLength="40" />
-          <Property Name="PAN" Type="varchar" MaxLength="20" />
-          <Property Name="AccountNumber" Type="varchar" MaxLength="50" />
-          <Property Name="UpilID" Type="varchar" MaxLength="80" />
-          <Property Name="CardNumber" Type="varchar" MaxLength="20" />
+          <Property Name="IdentityProof" Type="text" Nullable="false" />
           <Property Name="Contact" Type="bigint" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="HostEmployee" Type="int" />
@@ -75,7 +69,7 @@
           <Property Name="IsOccupied" Type="int" Nullable="false" />
           <Property Name="RoomCost" Type="bigint" />
         </EntityType>
-        <Association Name="FK__CustomerT__HostE__6FE99F9F">
+        <Association Name="FK__CustomerT__HostE__4316F928">
           <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="0..1" />
           <End Role="CustomerTrans" Type="Self.CustomerTrans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,19 +81,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CustomerT__Luxur__71D1E811">
-          <End Role="FacilityAmenityTrans" Type="Self.FacilityAmenityTrans" Multiplicity="0..1" />
+        <Association Name="FK__CustomerT__Luxur__44FF419A">
+          <End Role="AmenitiesMaster" Type="Self.AmenitiesMaster" Multiplicity="0..1" />
           <End Role="CustomerTrans" Type="Self.CustomerTrans" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="FacilityAmenityTrans">
-              <PropertyRef Name="LuxuryID" />
+            <Principal Role="AmenitiesMaster">
+              <PropertyRef Name="AmenityID" />
             </Principal>
             <Dependent Role="CustomerTrans">
               <PropertyRef Name="LuxuryProvided" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CustomerT__RoomN__70DDC3D8">
+        <Association Name="FK__CustomerT__RoomN__440B1D61">
           <End Role="RoomMaster" Type="Self.RoomMaster" Multiplicity="0..1" />
           <End Role="CustomerTrans" Type="Self.CustomerTrans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +105,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EmployeeM__RoleI__4BAC3F29">
+        <Association Name="FK__EmployeeM__RoleI__38996AB5">
           <End Role="RolesMaster" Type="Self.RolesMaster" Multiplicity="1" />
           <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -123,7 +117,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__FacilityA__Ameni__6D0D32F4">
+        <Association Name="FK__FacilityA__Ameni__403A8C7D">
           <End Role="AmenitiesMaster" Type="Self.AmenitiesMaster" Multiplicity="1" />
           <End Role="FacilityAmenityTrans" Type="Self.FacilityAmenityTrans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,23 +136,23 @@
           <EntitySet Name="FacilityAmenityTrans" EntityType="Self.FacilityAmenityTrans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolesMaster" EntityType="Self.RolesMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomMaster" EntityType="Self.RoomMaster" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CustomerT__HostE__6FE99F9F" Association="Self.FK__CustomerT__HostE__6FE99F9F">
+          <AssociationSet Name="FK__CustomerT__HostE__4316F928" Association="Self.FK__CustomerT__HostE__4316F928">
             <End Role="EmployeeMaster" EntitySet="EmployeeMaster" />
             <End Role="CustomerTrans" EntitySet="CustomerTrans" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerT__Luxur__71D1E811" Association="Self.FK__CustomerT__Luxur__71D1E811">
-            <End Role="FacilityAmenityTrans" EntitySet="FacilityAmenityTrans" />
+          <AssociationSet Name="FK__CustomerT__Luxur__44FF419A" Association="Self.FK__CustomerT__Luxur__44FF419A">
+            <End Role="AmenitiesMaster" EntitySet="AmenitiesMaster" />
             <End Role="CustomerTrans" EntitySet="CustomerTrans" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerT__RoomN__70DDC3D8" Association="Self.FK__CustomerT__RoomN__70DDC3D8">
+          <AssociationSet Name="FK__CustomerT__RoomN__440B1D61" Association="Self.FK__CustomerT__RoomN__440B1D61">
             <End Role="RoomMaster" EntitySet="RoomMaster" />
             <End Role="CustomerTrans" EntitySet="CustomerTrans" />
           </AssociationSet>
-          <AssociationSet Name="FK__EmployeeM__RoleI__4BAC3F29" Association="Self.FK__EmployeeM__RoleI__4BAC3F29">
+          <AssociationSet Name="FK__EmployeeM__RoleI__38996AB5" Association="Self.FK__EmployeeM__RoleI__38996AB5">
             <End Role="RolesMaster" EntitySet="RolesMaster" />
             <End Role="EmployeeMaster" EntitySet="EmployeeMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__FacilityA__Ameni__6D0D32F4" Association="Self.FK__FacilityA__Ameni__6D0D32F4">
+          <AssociationSet Name="FK__FacilityA__Ameni__403A8C7D" Association="Self.FK__FacilityA__Ameni__403A8C7D">
             <End Role="AmenitiesMaster" EntitySet="AmenitiesMaster" />
             <End Role="FacilityAmenityTrans" EntitySet="FacilityAmenityTrans" />
           </AssociationSet>
@@ -174,7 +168,8 @@
           </Key>
           <Property Name="AmenityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AmenityName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="FacilityAmenityTrans" Relationship="Self.FK__FacilityA__Ameni__6D0D32F4" FromRole="AmenitiesMaster" ToRole="FacilityAmenityTrans" />
+          <NavigationProperty Name="CustomerTrans" Relationship="Self.FK__CustomerT__Luxur__44FF419A" FromRole="AmenitiesMaster" ToRole="CustomerTrans" />
+          <NavigationProperty Name="FacilityAmenityTrans" Relationship="Self.FK__FacilityA__Ameni__403A8C7D" FromRole="AmenitiesMaster" ToRole="FacilityAmenityTrans" />
         </EntityType>
         <EntityType Name="CustomerTran">
           <Key>
@@ -184,13 +179,7 @@
           <Property Name="CustomerName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AdhaarNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="DrivingLicenseNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="PAN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UpilID" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="CardNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdentityProof" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Contact" Type="Int64" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HostEmployee" Type="Int32" />
@@ -200,9 +189,9 @@
           <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PaymentStatus" Type="Int32" Nullable="false" />
           <Property Name="TotalPayment" Type="Int64" />
-          <NavigationProperty Name="EmployeeMaster" Relationship="Self.FK__CustomerT__HostE__6FE99F9F" FromRole="CustomerTrans" ToRole="EmployeeMaster" />
-          <NavigationProperty Name="FacilityAmenityTran" Relationship="Self.FK__CustomerT__Luxur__71D1E811" FromRole="CustomerTrans" ToRole="FacilityAmenityTrans" />
-          <NavigationProperty Name="RoomMaster" Relationship="Self.FK__CustomerT__RoomN__70DDC3D8" FromRole="CustomerTrans" ToRole="RoomMaster" />
+          <NavigationProperty Name="AmenitiesMaster" Relationship="Self.FK__CustomerT__Luxur__44FF419A" FromRole="CustomerTrans" ToRole="AmenitiesMaster" />
+          <NavigationProperty Name="EmployeeMaster" Relationship="Self.FK__CustomerT__HostE__4316F928" FromRole="CustomerTrans" ToRole="EmployeeMaster" />
+          <NavigationProperty Name="RoomMaster" Relationship="Self.FK__CustomerT__RoomN__440B1D61" FromRole="CustomerTrans" ToRole="RoomMaster" />
         </EntityType>
         <EntityType Name="EmployeeMaster">
           <Key>
@@ -216,8 +205,8 @@
           <Property Name="Contact" Type="Int64" Nullable="false" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <Property Name="Salary" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="CustomerTrans" Relationship="Self.FK__CustomerT__HostE__6FE99F9F" FromRole="EmployeeMaster" ToRole="CustomerTrans" />
-          <NavigationProperty Name="RolesMaster" Relationship="Self.FK__EmployeeM__RoleI__4BAC3F29" FromRole="EmployeeMaster" ToRole="RolesMaster" />
+          <NavigationProperty Name="CustomerTrans" Relationship="Self.FK__CustomerT__HostE__4316F928" FromRole="EmployeeMaster" ToRole="CustomerTrans" />
+          <NavigationProperty Name="RolesMaster" Relationship="Self.FK__EmployeeM__RoleI__38996AB5" FromRole="EmployeeMaster" ToRole="RolesMaster" />
         </EntityType>
         <EntityType Name="FacilityAmenityTran">
           <Key>
@@ -227,8 +216,7 @@
           <Property Name="LuxuryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AmenityID" Type="Int32" Nullable="false" />
           <Property Name="LuxuryCost" Type="Int64" />
-          <NavigationProperty Name="AmenitiesMaster" Relationship="Self.FK__FacilityA__Ameni__6D0D32F4" FromRole="FacilityAmenityTrans" ToRole="AmenitiesMaster" />
-          <NavigationProperty Name="CustomerTrans" Relationship="Self.FK__CustomerT__Luxur__71D1E811" FromRole="FacilityAmenityTrans" ToRole="CustomerTrans" />
+          <NavigationProperty Name="AmenitiesMaster" Relationship="Self.FK__FacilityA__Ameni__403A8C7D" FromRole="FacilityAmenityTrans" ToRole="AmenitiesMaster" />
         </EntityType>
         <EntityType Name="RolesMaster">
           <Key>
@@ -236,7 +224,7 @@
           </Key>
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="EmployeeMasters" Relationship="Self.FK__EmployeeM__RoleI__4BAC3F29" FromRole="RolesMaster" ToRole="EmployeeMaster" />
+          <NavigationProperty Name="EmployeeMasters" Relationship="Self.FK__EmployeeM__RoleI__38996AB5" FromRole="RolesMaster" ToRole="EmployeeMaster" />
         </EntityType>
         <EntityType Name="RoomMaster">
           <Key>
@@ -246,9 +234,21 @@
           <Property Name="RoomType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsOccupied" Type="Int32" Nullable="false" />
           <Property Name="RoomCost" Type="Int64" />
-          <NavigationProperty Name="CustomerTrans" Relationship="Self.FK__CustomerT__RoomN__70DDC3D8" FromRole="RoomMaster" ToRole="CustomerTrans" />
+          <NavigationProperty Name="CustomerTrans" Relationship="Self.FK__CustomerT__RoomN__440B1D61" FromRole="RoomMaster" ToRole="CustomerTrans" />
         </EntityType>
-        <Association Name="FK__FacilityA__Ameni__6D0D32F4">
+        <Association Name="FK__CustomerT__Luxur__44FF419A">
+          <End Role="AmenitiesMaster" Type="Self.AmenitiesMaster" Multiplicity="0..1" />
+          <End Role="CustomerTrans" Type="Self.CustomerTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AmenitiesMaster">
+              <PropertyRef Name="AmenityID" />
+            </Principal>
+            <Dependent Role="CustomerTrans">
+              <PropertyRef Name="LuxuryProvided" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FacilityA__Ameni__403A8C7D">
           <End Role="AmenitiesMaster" Type="Self.AmenitiesMaster" Multiplicity="1" />
           <End Role="FacilityAmenityTrans" Type="Self.FacilityAmenityTran" Multiplicity="*" />
           <ReferentialConstraint>
@@ -260,7 +260,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CustomerT__HostE__6FE99F9F">
+        <Association Name="FK__CustomerT__HostE__4316F928">
           <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="0..1" />
           <End Role="CustomerTrans" Type="Self.CustomerTran" Multiplicity="*" />
           <ReferentialConstraint>
@@ -272,19 +272,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CustomerT__Luxur__71D1E811">
-          <End Role="FacilityAmenityTrans" Type="Self.FacilityAmenityTran" Multiplicity="0..1" />
-          <End Role="CustomerTrans" Type="Self.CustomerTran" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FacilityAmenityTrans">
-              <PropertyRef Name="LuxuryID" />
-            </Principal>
-            <Dependent Role="CustomerTrans">
-              <PropertyRef Name="LuxuryProvided" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CustomerT__RoomN__70DDC3D8">
+        <Association Name="FK__CustomerT__RoomN__440B1D61">
           <End Role="RoomMaster" Type="Self.RoomMaster" Multiplicity="0..1" />
           <End Role="CustomerTrans" Type="Self.CustomerTran" Multiplicity="*" />
           <ReferentialConstraint>
@@ -296,7 +284,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EmployeeM__RoleI__4BAC3F29">
+        <Association Name="FK__EmployeeM__RoleI__38996AB5">
           <End Role="RolesMaster" Type="Self.RolesMaster" Multiplicity="1" />
           <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,23 +303,23 @@
           <EntitySet Name="FacilityAmenityTrans" EntityType="Self.FacilityAmenityTran" />
           <EntitySet Name="RolesMasters" EntityType="Self.RolesMaster" />
           <EntitySet Name="RoomMasters" EntityType="Self.RoomMaster" />
-          <AssociationSet Name="FK__FacilityA__Ameni__6D0D32F4" Association="Self.FK__FacilityA__Ameni__6D0D32F4">
+          <AssociationSet Name="FK__CustomerT__Luxur__44FF419A" Association="Self.FK__CustomerT__Luxur__44FF419A">
+            <End Role="AmenitiesMaster" EntitySet="AmenitiesMasters" />
+            <End Role="CustomerTrans" EntitySet="CustomerTrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FacilityA__Ameni__403A8C7D" Association="Self.FK__FacilityA__Ameni__403A8C7D">
             <End Role="AmenitiesMaster" EntitySet="AmenitiesMasters" />
             <End Role="FacilityAmenityTrans" EntitySet="FacilityAmenityTrans" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerT__HostE__6FE99F9F" Association="Self.FK__CustomerT__HostE__6FE99F9F">
+          <AssociationSet Name="FK__CustomerT__HostE__4316F928" Association="Self.FK__CustomerT__HostE__4316F928">
             <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
             <End Role="CustomerTrans" EntitySet="CustomerTrans" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerT__Luxur__71D1E811" Association="Self.FK__CustomerT__Luxur__71D1E811">
-            <End Role="FacilityAmenityTrans" EntitySet="FacilityAmenityTrans" />
-            <End Role="CustomerTrans" EntitySet="CustomerTrans" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CustomerT__RoomN__70DDC3D8" Association="Self.FK__CustomerT__RoomN__70DDC3D8">
+          <AssociationSet Name="FK__CustomerT__RoomN__440B1D61" Association="Self.FK__CustomerT__RoomN__440B1D61">
             <End Role="RoomMaster" EntitySet="RoomMasters" />
             <End Role="CustomerTrans" EntitySet="CustomerTrans" />
           </AssociationSet>
-          <AssociationSet Name="FK__EmployeeM__RoleI__4BAC3F29" Association="Self.FK__EmployeeM__RoleI__4BAC3F29">
+          <AssociationSet Name="FK__EmployeeM__RoleI__38996AB5" Association="Self.FK__EmployeeM__RoleI__38996AB5">
             <End Role="RolesMaster" EntitySet="RolesMasters" />
             <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
           </AssociationSet>
@@ -357,13 +345,7 @@
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="AdhaarNumber" ColumnName="AdhaarNumber" />
-                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
-                <ScalarProperty Name="DrivingLicenseNumber" ColumnName="DrivingLicenseNumber" />
-                <ScalarProperty Name="PAN" ColumnName="PAN" />
-                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
-                <ScalarProperty Name="UpilID" ColumnName="UpilID" />
-                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="IdentityProof" ColumnName="IdentityProof" />
                 <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="HostEmployee" ColumnName="HostEmployee" />

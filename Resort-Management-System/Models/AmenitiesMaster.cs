@@ -17,12 +17,15 @@ namespace Resort_Management_System.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AmenitiesMaster()
         {
+            this.CustomerTrans = new HashSet<CustomerTran>();
             this.FacilityAmenityTrans = new HashSet<FacilityAmenityTran>();
         }
     
         public int AmenityID { get; set; }
         public string AmenityName { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerTran> CustomerTrans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FacilityAmenityTran> FacilityAmenityTrans { get; set; }
     }

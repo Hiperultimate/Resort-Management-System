@@ -16,14 +16,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Resort Name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                @if ((string)Session["roleName"] == "Admin") { 
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Employee", "Index", "EmployeeMasters")</li>
+                        <li>@Html.ActionLink("Roles", "Index", "RolesMasters")</li>
+                        <li>@Html.ActionLink("Rooms", "Index", "RoomMasters")</li>
+                        <li>@Html.ActionLink("Facility", "Index", "FacilityAmenityTrans")</li>
+                        <li>@Html.ActionLink("Amenity", "Index", "AmenitiesMasters")</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>

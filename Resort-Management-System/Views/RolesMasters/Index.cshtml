@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Resort_Management_System.Models.RolesMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Role</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoleID })
+        </td>
+    </tr>
+}
+
+</table>
+<h4>@Html.ActionLink("Add A New Role", "Create")</h4>

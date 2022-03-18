@@ -1,0 +1,42 @@
+﻿@model Resort_Management_System.Models.RoomMaster
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RoomMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOccupied)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOccupied)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomCost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoomNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

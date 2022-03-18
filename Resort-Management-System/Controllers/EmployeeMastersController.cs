@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Resort_Management_System.Models;
 
 namespace Resort_Management_System.Controllers
@@ -15,23 +16,34 @@ namespace Resort_Management_System.Controllers
         private Resort_Management_DBEntities db = new Resort_Management_DBEntities();
 
         // GET: EmployeeMasters
+        [Authorize]
         public ActionResult Index()
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             var employeeMasters = db.EmployeeMasters.Include(e => e.RolesMaster);
             return View(employeeMasters.ToList());
         }
 
         public ActionResult Login()
         {
+            if (Session["roleName"] != null)
+            {
+                if ((string)Session["roleName"] == "Admin")
+                {
+                    return RedirectToAction("Index", "EmployeeMasters");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "CustomerTrans");
+                }
+            }
             return View();
         }
 
-        /// <summary>
-        /// Login Function checks for correct email ID and password 
-        /// then redirects to admin or receptionist page
-        /// </summary>
-        /// <param name="Login"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult Login(FormCollection collection)
         {
@@ -44,16 +56,20 @@ namespace Resort_Management_System.Controllers
                 if (email == res.Email && password == res.Password)
                 {
                     RolesMaster role = db.RolesMasters.Where(x => x.RoleID == res.RoleID).First();
-                    ViewBag.Message = role.RoleName;
+                    Session["roleName"] = role.RoleName;
+
                     if (role.RoleName == "Admin")
                     {
-                        ViewBag.Message = "Admin";
-                        //Response.Redirect("/ToAdminPage");
+                        FormsAuthentication.SetAuthCookie(res.EmployeeName, false);
+                        //this will redirect to the index action of Employeemaster controller if the role name is found to be admin.
+                        Response.Redirect("Index");
                     }
                     else if (role.RoleName == "Receptionist")
                     {
-                        ViewBag.Message = "Receptionist";
-                        //Response.Redirect("/ToReceptionistPage");
+                        FormsAuthentication.SetAuthCookie(res.EmployeeName, false);
+                        //this will redirect to index action method of CustomerTrans controller if the role name is found to be receptionist.
+                        return RedirectToAction("Index", "CustomerTrans");
+
                     }
                 }
             }
@@ -66,8 +82,14 @@ namespace Resort_Management_System.Controllers
         }
 
         // GET: EmployeeMasters/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -81,8 +103,14 @@ namespace Resort_Management_System.Controllers
         }
 
         // GET: EmployeeMasters/Create
+        [Authorize]
         public ActionResult Create()
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             ViewBag.RoleID = new SelectList(db.RolesMasters, "RoleID", "RoleName");
             return View();
         }
@@ -90,10 +118,16 @@ namespace Resort_Management_System.Controllers
         // POST: EmployeeMasters/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmployeeID,EmployeeName,Email,Password,Address,Contact,RoleID,Salary")] EmployeeMaster employeeMaster)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             if (ModelState.IsValid)
             {
                 db.EmployeeMasters.Add(employeeMaster);
@@ -106,8 +140,14 @@ namespace Resort_Management_System.Controllers
         }
 
         // GET: EmployeeMasters/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -124,10 +164,16 @@ namespace Resort_Management_System.Controllers
         // POST: EmployeeMasters/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EmployeeID,EmployeeName,Email,Password,Address,Contact,RoleID,Salary")] EmployeeMaster employeeMaster)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(employeeMaster).State = EntityState.Modified;
@@ -139,8 +185,14 @@ namespace Resort_Management_System.Controllers
         }
 
         // GET: EmployeeMasters/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -154,10 +206,16 @@ namespace Resort_Management_System.Controllers
         }
 
         // POST: EmployeeMasters/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             EmployeeMaster employeeMaster = db.EmployeeMasters.Find(id);
             db.EmployeeMasters.Remove(employeeMaster);
             db.SaveChanges();

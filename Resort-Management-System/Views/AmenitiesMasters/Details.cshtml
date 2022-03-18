@@ -1,0 +1,26 @@
+﻿@model Resort_Management_System.Models.AmenitiesMaster
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AmenitiesMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AmenityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmenityName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AmenityID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
