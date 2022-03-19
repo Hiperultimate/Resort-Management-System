@@ -20,12 +20,21 @@ namespace Resort_Management_System.Models
         {
             this.CustomerTrans = new HashSet<CustomerTran>();
         }
-    
+
+        [Display(Name = "Room Number")]
+        [Required(ErrorMessage = "Enter Room Number")]
         public int RoomNumber { get; set; }
+
+        [Display(Name = "Room Type")]
+        [Required(ErrorMessage = "Enter Room Type")]
         public string RoomType { get; set; }
 
         [Range(0, 1, ErrorMessage = "Wrong input: Enter 0 for False, 1 for True")]
+        [Display(Name = "Occupied")]
         public int IsOccupied { get; set; }
+
+        [Display(Name = "Room Cost")]
+        [Required]
         public Nullable<long> RoomCost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

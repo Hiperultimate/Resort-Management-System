@@ -49,6 +49,12 @@ namespace Resort_Management_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RoomNumber,RoomType,IsOccupied,RoomCost")] RoomMaster roomMaster)
         {
+            RoomMaster roomInfo = db.RoomMasters.Where(x => x.RoomNumber == roomMaster.RoomNumber).First();
+            if (roomInfo != null) {
+                ViewBag.ErrorMsg = $"Error : Room number {roomMaster.RoomNumber} already exists. Please enter a new Room Number.";
+                return View(roomMaster);
+            }
+
             if (ModelState.IsValid)
             {
                 db.RoomMasters.Add(roomMaster);
