@@ -10,6 +10,7 @@ using Resort_Management_System.Models;
 
 namespace Resort_Management_System.Controllers
 {
+    [Authorize]
     public class RoomMastersController : Controller
     {
         private Resort_Management_DBEntities db = new Resort_Management_DBEntities();
