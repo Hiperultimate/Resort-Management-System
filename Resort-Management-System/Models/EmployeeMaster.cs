@@ -29,6 +29,7 @@ namespace Resort_Management_System.Models
         public string EmployeeName { get; set; }
 
         [Display(Name = "Email-ID")]
+        [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Enter employee email")]
         [EmailAddress(ErrorMessage = "Enter a valid email address")]
         public string Email { get; set; }
@@ -43,7 +44,6 @@ namespace Resort_Management_System.Models
 
         [Required(ErrorMessage = "Enter a contact number")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Numbers only")]
-        [MaxLength(10, ErrorMessage = "Contact should be 10 characters long")]
         public long Contact { get; set; }
 
         [ForeignKey("RolesMaster")]

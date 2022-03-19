@@ -36,7 +36,6 @@ namespace Resort_Management_System.Models
 
         [Required(ErrorMessage = "Enter a contact number")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Numbers only")]
-        [MaxLength(10, ErrorMessage = "Contact should be 10 characters long")]
         public long Contact { get; set; }
 
         [Required]
