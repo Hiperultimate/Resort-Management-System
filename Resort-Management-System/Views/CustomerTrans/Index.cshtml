@@ -52,6 +52,7 @@
 
     @foreach (var item in Model)
     {
+        var paymentDisplay = item.PaymentStatus == 1 ? "Paid" : "Unpaid";
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerName)
@@ -78,7 +79,8 @@
                 @Html.DisplayFor(modelItem => item.CheckOutDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PaymentStatus)
+                @paymentDisplay
+                @*@Html.DisplayFor(modelItem => item.PaymentStatus)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalPayment)

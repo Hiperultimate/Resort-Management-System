@@ -11,7 +11,8 @@ namespace Resort_Management_System.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CustomerTran
     {
         public int BookingID { get; set; }
@@ -26,6 +27,8 @@ namespace Resort_Management_System.Models
         public Nullable<int> LuxuryProvided { get; set; }
         public System.DateTime CheckInDate { get; set; }
         public System.DateTime CheckOutDate { get; set; }
+
+        [Range(0, 1, ErrorMessage = "Wrong input: Enter 0 for False, 1 for True")]
         public int PaymentStatus { get; set; }
         public Nullable<long> TotalPayment { get; set; }
     
