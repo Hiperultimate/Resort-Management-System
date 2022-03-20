@@ -3,18 +3,30 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
-@using (Html.BeginForm("Login", "EmployeeMasters", FormMethod.Post))
-{
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetLogin.css")
 
-    <label>Email : </label>
-    @Html.TextBoxFor(x => x.Email)
+<div class="loginBox">
 
-    <label>Password : </label>
-    @Html.TextBoxFor(x => x.Password)
-
-    <button type="submit">Submit</button>
-}
+    <table>
+        <tr>
+            <td colspan="2" align="center"><h2>Login</h2></td>
+        </tr>
+        @using (Html.BeginForm("Login", "EmployeeMasters", FormMethod.Post))
+        {
+            <tr>
+                <td> <label style="margin-left: 30px">Email : </label></td>
+                <td> @Html.TextBoxFor(x => x.Email)</td>
+            </tr>
+            <tr>
+                <td><label style="margin-left: 30px">Password : </label></td>
+                <td>@Html.TextBoxFor(x => x.Password)</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><button type="submit" class="button1">Submit</button></td>
+            </tr>
+        }
+    </table>
+</div>
 
 <h3>@ViewBag.Message</h3>
-

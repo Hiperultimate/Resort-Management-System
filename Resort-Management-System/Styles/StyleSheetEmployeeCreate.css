@@ -1,0 +1,77 @@
+﻿.form-container {
+    height: auto;
+    margin: 0 20vw 0 20vw;
+}
+
+.employee-form-grid {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.15fr 0.5fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "employee-name-lbl employee-name-inp . contact-lbl contact-inp"
+        "employee-email-lbl employee-email-inp . role-id-lbl role-id-inp"
+        "password-lbl password-inp . salary-lbl salary-inp"
+        "address-lbl address-inp . . .";
+}
+
+.input-container > div {
+    display: block;
+}
+
+.employee-name-lbl {
+    grid-area: employee-name-lbl;
+}
+
+.employee-name-inp {
+    grid-area: employee-name-inp;
+}
+
+.employee-email-lbl {
+    grid-area: employee-email-lbl;
+}
+
+.employee-email-inp {
+    grid-area: employee-email-inp;
+}
+
+.password-lbl {
+    grid-area: password-lbl;
+}
+
+.password-inp {
+    grid-area: password-inp;
+}
+
+.address-lbl {
+    grid-area: address-lbl;
+}
+
+.address-inp {
+    grid-area: address-inp;
+}
+
+.contact-lbl {
+    grid-area: contact-lbl;
+}
+
+.contact-inp {
+    grid-area: contact-inp;
+}
+
+.role-id-lbl {
+    grid-area: role-id-lbl;
+}
+
+.role-id-inp {
+    grid-area: role-id-inp;
+}
+
+.salary-lbl {
+    grid-area: salary-lbl;
+}
+
+.salary-inp {
+    grid-area: salary-inp;
+}

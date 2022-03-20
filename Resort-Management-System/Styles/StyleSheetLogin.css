@@ -1,0 +1,23 @@
+﻿body {
+    background-image: url("https://www.jaypeehotels.com/uploads/dinings/4321551787809.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+}
+
+.loginBox {
+    
+    width: 20%;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 100px;
+    background-color: #e5e5e5;
+    padding: 30px;
+}
+
+table{
+    align-items:center;
+}
+
+td{
+    padding:10px 5px;
+}
