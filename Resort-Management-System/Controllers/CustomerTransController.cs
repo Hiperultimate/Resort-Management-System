@@ -55,6 +55,10 @@ namespace Resort_Management_System.Controllers
 
             if (ModelState.IsValid)
             {
+                RoomMaster roomToOccupy = db.RoomMasters.Where(x => x.RoomNumber == customerTran.RoomNumber).First();
+                roomToOccupy.IsOccupied = 1;
+                db.Entry(roomToOccupy).State = EntityState.Modified;
+
                 db.CustomerTrans.Add(customerTran);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -142,8 +146,12 @@ namespace Resort_Management_System.Controllers
             {
                 return RedirectToAction("Index", "EmployeeMasters");
             }
-
             CustomerTran customerTran = db.CustomerTrans.Find(id);
+
+            RoomMaster roomToOccupy = db.RoomMasters.Where(x => x.RoomNumber == customerTran.RoomNumber).First();
+            roomToOccupy.IsOccupied = 0;
+            db.Entry(roomToOccupy).State = EntityState.Modified;
+
             db.CustomerTrans.Remove(customerTran);
             db.SaveChanges();
             return RedirectToAction("Index");
