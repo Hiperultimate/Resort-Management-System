@@ -34,6 +34,25 @@ namespace Resort_Management_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RoleID,RoleName")] RolesMaster rolesMaster)
         {
+            if (rolesMaster.RoleName != "")
+            {
+                try
+                {
+                    RolesMaster roleInfo = db.RolesMasters.Where(x => x.RoleName == rolesMaster.RoleName).First();
+                    if (roleInfo != null)
+                    {
+                        ViewBag.ErrorMsg = $"Error : Role with role name  {rolesMaster.RoleName} already exists. Please enter a new Role Name.";
+                        return View(rolesMaster);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (rolesMaster.RoleName != null) { 
+                        ViewBag.ErrorMsg = $"Role name is safe to use.";
+                    }
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.RolesMasters.Add(rolesMaster);
