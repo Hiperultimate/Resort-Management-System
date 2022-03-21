@@ -33,9 +33,11 @@ namespace Resort_Management_System.Controllers
                 return RedirectToAction("Index", "EmployeeMasters");
             }
 
+            var available_rooms = db.RoomMasters.Where(x => x.IsOccupied == 0);
+
             ViewBag.LuxuryProvided = new SelectList(db.AmenitiesMasters, "AmenityID", "AmenityName");
             ViewBag.HostEmployee = new SelectList(db.EmployeeMasters, "EmployeeID", "EmployeeName");
-            ViewBag.RoomNumber = new SelectList(db.RoomMasters, "RoomNumber", "RoomType");
+            ViewBag.RoomNumber = new SelectList(available_rooms, "RoomNumber", "RoomType");
             return View();
         }
 
