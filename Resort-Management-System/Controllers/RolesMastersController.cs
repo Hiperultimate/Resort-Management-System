@@ -21,21 +21,6 @@ namespace Resort_Management_System.Controllers
             return View(db.RolesMasters.ToList());
         }
 
-        // GET: RolesMasters/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RolesMaster rolesMaster = db.RolesMasters.Find(id);
-            if (rolesMaster == null)
-            {
-                return HttpNotFound();
-            }
-            return View(rolesMaster);
-        }
-
         // GET: RolesMasters/Create
         public ActionResult Create()
         {
@@ -56,37 +41,6 @@ namespace Resort_Management_System.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(rolesMaster);
-        }
-
-        // GET: RolesMasters/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RolesMaster rolesMaster = db.RolesMasters.Find(id);
-            if (rolesMaster == null)
-            {
-                return HttpNotFound();
-            }
-            return View(rolesMaster);
-        }
-
-        // POST: RolesMasters/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RoleID,RoleName")] RolesMaster rolesMaster)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(rolesMaster).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
             return View(rolesMaster);
         }
 

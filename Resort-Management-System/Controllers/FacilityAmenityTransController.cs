@@ -22,21 +22,6 @@ namespace Resort_Management_System.Controllers
             return View(facilityAmenityTrans.ToList());
         }
 
-        // GET: FacilityAmenityTrans/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            FacilityAmenityTran facilityAmenityTran = db.FacilityAmenityTrans.Find(id);
-            if (facilityAmenityTran == null)
-            {
-                return HttpNotFound();
-            }
-            return View(facilityAmenityTran);
-        }
-
         // GET: FacilityAmenityTrans/Create
         public ActionResult Create()
         {

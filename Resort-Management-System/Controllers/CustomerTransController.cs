@@ -25,26 +25,6 @@ namespace Resort_Management_System.Controllers
             return View(customerTrans.ToList());
         }
 
-        // GET: CustomerTrans/Details/5
-        public ActionResult Details(int? id)
-        {
-            if ((string)Session["roleName"] != "Receptionist")
-            {
-                return RedirectToAction("Index", "EmployeeMasters");
-            }
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CustomerTran customerTran = db.CustomerTrans.Find(id);
-            if (customerTran == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customerTran);
-        }
-
         // GET: CustomerTrans/Create
         public ActionResult Create()
         {

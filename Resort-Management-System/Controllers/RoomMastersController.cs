@@ -21,21 +21,6 @@ namespace Resort_Management_System.Controllers
             return View(db.RoomMasters.ToList());
         }
 
-        // GET: RoomMasters/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RoomMaster roomMaster = db.RoomMasters.Find(id);
-            if (roomMaster == null)
-            {
-                return HttpNotFound();
-            }
-            return View(roomMaster);
-        }
-
         // GET: RoomMasters/Create
         public ActionResult Create()
         {

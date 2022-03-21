@@ -87,27 +87,6 @@ namespace Resort_Management_System.Controllers
             return RedirectToAction("Index", "EmployeeMasters");
         }
 
-        // GET: EmployeeMasters/Details/5
-        [Authorize]
-        public ActionResult Details(int? id)
-        {
-            if ((string)Session["roleName"] != "Admin")
-            {
-                return RedirectToAction("Index", "CustomerTrans");
-            }
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EmployeeMaster employeeMaster = db.EmployeeMasters.Find(id);
-            if (employeeMaster == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employeeMaster);
-        }
-
         // GET: EmployeeMasters/Create
         [Authorize]
         public ActionResult Create()

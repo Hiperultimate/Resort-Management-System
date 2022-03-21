@@ -21,21 +21,6 @@ namespace Resort_Management_System.Controllers
             return View(db.AmenitiesMasters.ToList());
         }
 
-        // GET: AmenitiesMasters/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AmenitiesMaster amenitiesMaster = db.AmenitiesMasters.Find(id);
-            if (amenitiesMaster == null)
-            {
-                return HttpNotFound();
-            }
-            return View(amenitiesMaster);
-        }
-
         // GET: AmenitiesMasters/Create
         public ActionResult Create()
         {
