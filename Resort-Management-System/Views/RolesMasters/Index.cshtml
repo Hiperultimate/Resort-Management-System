@@ -4,7 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Role</h2>
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetIndex.css")
+
+<div class="displayTop">
+    <h2 class="allDetail"><span>ALL ROLES</span></h2>
+    <input type="button" class="button2" value="Add New Role" onclick="location.href='@Url.Action("Create", "RolesMasters")'" />
+</div>
 
 <table class="table">
     <tr>
@@ -14,18 +20,15 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.RoleName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RoleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RoleID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.RoleID })
         </td>
     </tr>
 }
 
 </table>
-<h4>@Html.ActionLink("Add A New Role", "Create")</h4>

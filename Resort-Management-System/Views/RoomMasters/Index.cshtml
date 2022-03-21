@@ -4,7 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Room</h2>
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetIndex.css")
+
+<div class="displayTop">
+    <h2 class="allDetail"><span>ALL ROOMS</span></h2>
+    <input type="button" class="button2" value="Add New Room" onclick="location.href='@Url.Action("Create", "RoomMasters")'" />
+</div>
 
 
 <table class="table">
@@ -21,28 +27,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model)
-{
-    string displayOccupied = item.IsOccupied == 0 ? "False" : "True";
+    @foreach (var item in Model)
+    {
+        string displayOccupied = item.IsOccupied == 0 ? "False" : "True";
 
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomType)
-        </td>
-        <td>
-            @displayOccupied
-            @*@Html.DisplayFor(modelItem => item.IsOccupied)*@
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomCost)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RoomNumber }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RoomNumber }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RoomNumber })
-        </td>
-    </tr>
-}
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomType)
+            </td>
+            <td>
+                @displayOccupied
+                @*@Html.DisplayFor(modelItem => item.IsOccupied)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomCost)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RoomNumber }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RoomNumber })
+            </td>
+        </tr>
+    }
 
 </table>
-<h4> @Html.ActionLink("Add A new Room", "Create")</h4>

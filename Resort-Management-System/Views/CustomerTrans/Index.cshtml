@@ -4,7 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Customer</h2>
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetIndex.css")
+
+<div class="displayTop">
+    <h2 class="allDetail"><span>ALL CUSTOMER</span></h2>
+    <input type="button" class="button2" value="Add New Customer" onclick="location.href='@Url.Action("Create", "CustomerTrans")'" />
+</div>
 
 <table class="table">
     <tr>
@@ -96,7 +102,6 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BookingID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.BookingID })
             </td>
         </tr>
@@ -104,4 +109,3 @@
 
 </table>
 
-<h4>@Html.ActionLink("Add A New Customer", "Create")</h4>

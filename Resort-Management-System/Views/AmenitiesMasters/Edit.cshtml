@@ -4,15 +4,18 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetCreate.css")
+
+<h2 class="addDetail">EDIT AMENITY</h2>
+<hr />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>AmenitiesMaster</h4>
-        <hr />
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.AmenityID)
 
@@ -26,12 +29,18 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <table>
+                    <tr>
+                        <td><input type="submit" value="Save" class="button2" /></td>
+                        <td><input type="button" class="button2" value="Back To List" onclick="location.href='@Url.Action("Index", "AmenitiesMasters")'" /></td>
+                    </tr>
+                </table>
+
             </div>
         </div>
     </div>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@

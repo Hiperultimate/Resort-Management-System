@@ -4,14 +4,18 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetCreate.css")
 
-@using (Html.BeginForm()) 
+<h2 class="addDetail">ADD NEW ROLE</h2>
+<hr />
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>RolesMaster</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -21,16 +25,20 @@
                 @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
             </div>
         </div>
-        <h3>@ViewBag.ErrorMsg</h3>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <table>
+                    <tr>
+                        <td><input type="submit" value="Create" class="button2" /></td>
+                        <td><input type="button" class="button2" value="Back To List" onclick="location.href='@Url.Action("Index", "RolesMasters")'" /></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@

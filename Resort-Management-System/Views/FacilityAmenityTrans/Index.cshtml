@@ -4,7 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Facility Amenity</h2>
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetIndex.css")
+
+<div class="displayTop">
+    <h2 class="allDetail"><span>ALL FACILITIES</span></h2>
+    <input type="button" class="button2" value="Add New Facility" onclick="location.href='@Url.Action("Create", "FacilityAmenityTrans")'" />
+</div>
 
 
 <table class="table">
@@ -21,25 +27,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LuxuryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LuxuryCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AmenitiesMaster.AmenityName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LuxuryID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LuxuryID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LuxuryID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuxuryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuxuryCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmenitiesMaster.AmenityName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.LuxuryID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.LuxuryID })
+            </td>
+        </tr>
+    }
 
 </table>
 
-<h4> @Html.ActionLink("Add A new Facility Amenity", "Create")</h4>

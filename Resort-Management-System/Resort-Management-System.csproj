@@ -213,7 +213,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Styles\StyleSheetEmployeeCreate.css" />
+    <Content Include="Styles\StyleSheetCreate.css" />
+    <Content Include="Styles\StyleSheetDelete.css" />
+    <Content Include="Styles\StyleSheetIndex.css" />
     <Content Include="Styles\StyleSheetLogin.css" />
     <Content Include="Styles\StyleSheetCommon.css" />
     <Content Include="Web.config" />

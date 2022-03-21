@@ -3,8 +3,14 @@
 @{
     ViewBag.Title = "Index";
 }
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetIndex.css")
 
-<h2>Amenity</h2>
+<div class="displayTop">
+    <h2 class="allDetail"><span>ALL AMENITIES</span></h2>
+    <input type="button" class="button2" value="Add New Amenity" onclick="location.href='@Url.Action("Create", "AmenitiesMasters")'" />
+</div>
+
 
 <table class="table">
     <tr>
@@ -14,14 +20,13 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.AmenityName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AmenityID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AmenityID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.AmenityID })
         </td>
     </tr>
@@ -29,4 +34,3 @@
 
 </table>
 
-<h4>@Html.ActionLink("Add A New Amenity", "Create")</h4>

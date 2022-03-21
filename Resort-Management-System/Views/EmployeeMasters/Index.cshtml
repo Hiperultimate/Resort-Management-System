@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "Index";
 }
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetIndex.css")
 
-<h2>Employee</h2>
+<div class="displayTop">
+    <h2 class="allDetail"><span>ALL EMPLOYEES</span></h2>
+    <input type="button" class="button2" value="Add New Employee" onclick="location.href='@Url.Action("Create", "EmployeeMasters")'" />
+</div>
 
 <table class="table">
     <tr>
@@ -32,7 +37,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.EmployeeName)
@@ -57,12 +62,8 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeID })
         </td>
     </tr>
 }
-
 </table>
-
-<h4>@Html.ActionLink("Add A New Employee", "Create")</h4>

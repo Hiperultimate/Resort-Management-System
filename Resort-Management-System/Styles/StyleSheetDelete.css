@@ -1,0 +1,50 @@
+﻿.delDetail {
+    margin-top: 25px;
+    margin-left: 100px;
+    padding: 8px;
+    color: #35424a
+}
+
+.delConfirm {
+    margin-top: 25px;
+    margin-left: 150px;
+    padding: 8px;
+    color: #35424a
+}
+
+.delClass{
+    background-color: #c4c4c4;
+    color: black;
+    border-collapse: collapse;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+dl{
+    margin: 30px;
+}
+
+dt{
+    margin: 5px;
+    font-weight: bold;
+}
+dd{
+    margin: 5px;
+    
+}
+.button2 {
+    font-size: 15px;
+    padding: 8px;
+    margin: 5px 20px;
+    background-color: #e8491d;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #35424a;
+    cursor: pointer;
+}
+
+table {
+    align-self: center;
+}

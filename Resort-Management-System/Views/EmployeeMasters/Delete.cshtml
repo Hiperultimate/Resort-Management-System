@@ -4,12 +4,15 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+@Styles.Render("~/Styles/StyleSheetCommon.css")
+@Styles.Render("~/Styles/StyleSheetDelete.css")
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>EmployeeMaster</h4>
-    <hr />
+<h2 class="delDetail">DELETE EMPLOYEE</h2>
+<hr />
+
+<h3 class="delConfirm">Are you sure you want to delete this?</h3>
+<div class="delClass">
+    
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.EmployeeName)
@@ -70,11 +73,17 @@
     </dl>
 
     @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<div class="form-actions no-color">
+    <table>
+        <tr>
+            <td><input type="submit" value="Delete" class="button2" /></td>
+            <td><input type="button" class="button2" value="Back To List" onclick="location.href='@Url.Action("Index", "EmployeeMasters")'" /></td>
+        </tr>
+    </table>
+    
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
     }
 </div>

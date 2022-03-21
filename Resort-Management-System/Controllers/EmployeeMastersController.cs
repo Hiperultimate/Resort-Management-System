@@ -72,6 +72,9 @@ namespace Resort_Management_System.Controllers
 
                     }
                 }
+                else { 
+                    ViewBag.Message = "Please enter valid Email ID and Password";
+                }
             }
             catch
             {
