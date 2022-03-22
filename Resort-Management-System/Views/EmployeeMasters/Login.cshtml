@@ -12,20 +12,21 @@
         <tr>
             <td colspan="2" align="center"><h2>Login</h2></td>
         </tr>
-        @using (Html.BeginForm("Login", "EmployeeMasters", FormMethod.Post)){
-        <tr>
-            <td> <label style="margin-left: 30px">Email : </label></td>
-            <td> @Html.TextBoxFor(x => x.Email)</td>
-        </tr>
-        <tr>
-            <td><label style="margin-left: 30px">Password : </label></td>
-            <td>@Html.PasswordFor(x => x.Password)</td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center"><button type="submit" class="button1">Submit</button></td>
-        </tr>
+        @using (Html.BeginForm("Login", "EmployeeMasters", FormMethod.Post))
+        {
+            <tr>
+                <td> <label style="margin-left: 30px">Email : </label></td>
+                <td> @Html.TextBoxFor(x => x.Email)</td>
+            </tr>
+            <tr>
+                <td><label style="margin-left: 30px">Password : </label></td>
+                <td>@Html.PasswordFor(x => x.Password)</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><button type="submit" class="button1">Submit</button></td>
+            </tr>
         }
     </table>
+    <h4>@ViewBag.Message</h4>
 </div>
 
-<h3>@ViewBag.Message</h3>

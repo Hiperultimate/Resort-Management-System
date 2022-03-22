@@ -18,12 +18,20 @@ namespace Resort_Management_System.Controllers
         // GET: RoomMasters
         public ActionResult Index()
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
             return View(db.RoomMasters.ToList());
         }
 
         // GET: RoomMasters/Create
         public ActionResult Create()
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
             return View();
         }
 
@@ -34,6 +42,11 @@ namespace Resort_Management_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RoomNumber,RoomType,IsOccupied,RoomCost")] RoomMaster roomMaster)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             if (roomMaster.RoomNumber != 0) {
                 try
                 {
@@ -66,6 +79,11 @@ namespace Resort_Management_System.Controllers
         // GET: RoomMasters/Edit/5
         public ActionResult Edit(int? id)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,6 +103,10 @@ namespace Resort_Management_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RoomNumber,RoomType,IsOccupied,RoomCost")] RoomMaster roomMaster)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(roomMaster).State = EntityState.Modified;
@@ -97,6 +119,10 @@ namespace Resort_Management_System.Controllers
         // GET: RoomMasters/Delete/5
         public ActionResult Delete(int? id)
         {
+            if ((string)Session["roleName"] != "Admin")
+            {
+                return RedirectToAction("Index", "CustomerTrans");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
